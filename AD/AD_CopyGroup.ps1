@@ -95,6 +95,7 @@ function addUsers{
     [STRING]$groupNameSrc,
     [STRING]$groupNameDest
     )
+    $count=0
     $countError=0
     $Target = Get-ADGroupMember -Identity $groupNameSrc -Recursive  
     foreach ($Person in $Target) {  
@@ -102,10 +103,10 @@ function addUsers{
         {
         Add-ADGroupMember -Identity $groupNameDest -Members $Person.distinguishedname -Credential $AdminCredentials
         Write-Log -Level "INFO" -Message "User : $($Person.distinguishedname) Was added in the group $($groupNameDest)" -logfile $logfile
-        }
+       	$count=$count+1
+       }
         catch
         {
-
          Write-Log -Level "WARN" -Message "The user $($Person.distinguishedname) was not added in the group $($groupNameDest)" -logfile $logfile
          Write-Log -Level "ERROR" -Message "UNEXEPECTED Error Message : $($_.Exception.Message)" -logfile $logfile
          $countError=$countError+1       
