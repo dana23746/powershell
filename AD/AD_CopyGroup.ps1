@@ -124,7 +124,7 @@ function addUsers{
 
 #Clean up the log file
 CleanLogFile ($logfile)
-Write-Log -Level "INFO" -Message "Script begining, written by Luka Dujardin" -logfile $logfile
+Write-Log -Level "INFO" -Message "Script begining, written by dana23746" -logfile $logfile
 
 #Prerequisite 
 $AdminCredentials = Get-Credential ""
