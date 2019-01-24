@@ -95,7 +95,6 @@ function addUsers{
     [STRING]$groupNameSrc,
     [STRING]$groupNameDest
     )
-    $count=0
     $countError=0
     $Target = Get-ADGroupMember -Identity $groupNameSrc -Recursive  
     foreach ($Person in $Target) {  
@@ -103,7 +102,6 @@ function addUsers{
         {
         Add-ADGroupMember -Identity $groupNameDest -Members $Person.distinguishedname -Credential $AdminCredentials
         Write-Log -Level "INFO" -Message "User : $($Person.distinguishedname) Was added in the group $($groupNameDest)" -logfile $logfile
-        $count=$count+1
         }
         catch
         {
