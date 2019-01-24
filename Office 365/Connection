@@ -1,0 +1,17 @@
+---Exchange : 
+Connect-EXOPSSession -UserPrincipalName <UserMail>
+Or: 
+$Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://outlook.office365.com/powershell-liveid/ -Credential $UserCredential -Authentication Basic -AllowRedirection
+Import-PSSession $Session -DisableNameChecking
+------------------------------------------------------------------------------------------------------------------
+---MSOL-O365 
+Import-Module MsOnline
+Connect-MsolService
+-------------------------------------------------------------------------------------------------------------------
+---Sharepoint 
+connect-sposervice -URL https://TENANTNAME-admin.sharepoint.com
+-------------------------------------------------------------------------------------------------------------------
+---Skype : 
+Import-Module LyncOnlineConnector 
+$cssess=New-CsOnlineSession -Credential $cred 
+Import-PSSession $cssess -AllowClobber 
